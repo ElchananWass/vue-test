@@ -8,17 +8,22 @@
 
   <body>
     <div id="app">
-      <h2>welcome to todo maneger</h2>
-      <ol>
-        <li v-for="task in list" >{{task}} <button @click="RemoveTask" :name="task">x</button></li>
-      </ol>
-      <input type="text" id="" v-model="tempTask" placeholder="new task"> <button @click="AddTask" >Add task</button>
+
+      <h2>welcome to todo manager</h2>
+      <div>
+        <input type="text" id="" v-model="tempNewGoal" placeholder="new Goal"><button @click="AddGoal">Add Goal</button>
+        <div v-for="goal in goals">
+          <task-card :text = "goal" depth ="" @delete-me="DeleteSubGoal"></task-card>
+        </div>
+      </div>
+
     </div>
 
     <!--import app-->
     <script src = "script.js"></script>
     <!--import components-->
-    <script src = "./componets/counter.js"></script>
+    <script src = "./componets/task-card.js"></script>
+    <script src = "./componets/add-task.js"></script>
     <!--mount app-->
     <script>
       const mountedApp = app.mount('#app')

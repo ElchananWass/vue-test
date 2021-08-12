@@ -1,30 +1,21 @@
 const app = Vue.createApp({
     data() {
       return {
-        counter: 0,
-        list: ["eat","sleep","enjoy","kill :)"],
-        tempTask: "",
+        goals: [],
+        tempNewGoal: ""
       }
     },
     methods: {
-      AddTask() {
-        if (this.tempTask != ''){
-          this.list.push(this.tempTask)
-        }
-        this.tempTask = ''
-      
+      AddGoal() {
+          this.goals.push(this.tempNewGoal)
+          this.tempNewGoal = ''
       },
-      RemoveTask(event) {
-        const index = this.list.indexOf(event.target.name)
-          if (index > -1) {
-            this.list.splice(index, 1)
+      DeleteSubGoal(goalToRemove) {
+        index = this.goals.indexOf(goalToRemove);
+        if (index > -1) {
+            this.goals.splice(index, 1);
         }
       }
     },
-    mounted() {
-        setInterval(() => {
-          this.counter++
-        }, 1000)
-      }
   })
   
