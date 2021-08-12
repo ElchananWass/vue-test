@@ -13,19 +13,17 @@
 
       <h2>welcome to todo manager</h2>
       <div>
-        <input type="text" id="" v-model="tempNewGoal" placeholder="new Goal"><button @click="AddGoal">Add Goal</button>
-        <div v-for="goal in goals">
-          <task-card :text = "goal" depth ="" @delete-me="DeleteSubGoal"></task-card>
-        </div>
+        <input type="text" id="" v-model="tempItem" placeholder="new Item" @keyup.enter="AddToRoot">
+        <button @click="AddToRoot">Add Item</button>
+          <item-card :item = "'/'" depth ="" @add-new-item="AddNewItem" @delete-me="DeleteItem"></item-card>
       </div>
-
     </div>
 
     <!--import app-->
     <script src = "script.js"></script>
     <!--import components-->
-    <script src = "./componets/task-card.js"></script>
-    <script src = "./componets/add-task.js"></script>
+    <script src = "./componets/item-card.js"></script>
+    <script src = "./componets/add-item.js"></script>
     <!--mount app-->
     <script>
       const mountedApp = app.mount('#app')

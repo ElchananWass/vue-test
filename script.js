@@ -1,21 +1,35 @@
 const app = Vue.createApp({
     data() {
       return {
-        goals: [],
-        tempNewGoal: ""
+        treeNodeList:{
+          '/':{
+            parent:"",
+            name:'/',
+            children:[]
+          },
+        },
+        tempItem: ""
       }
     },
     methods: {
-      AddGoal() {
-          this.goals.push(this.tempNewGoal)
-          this.tempNewGoal = ''
-      },
-      DeleteSubGoal(goalToRemove) {
-        index = this.goals.indexOf(goalToRemove);
+      DeleteItem(itemToDel) {
+        itemItself = this.treeNodeList[itemToDel]
+        parent = this.treeNodeList[itemItself.parent]
+        index = parent.children.indexOf(itemToDel);
         if (index > -1) {
-            this.goals.splice(index, 1);
+          parent.children.splice(index, 1);
         }
-      }
-    },
+        this.treeNodeList[itemToDel] = ""
+        delete this.treeNodeList[itemToDel]
+      },
+      AddNewItem(newItem) {
+        this.treeNodeList[newItem.name] = newItem
+        this.treeNodeList[newItem.parent].children.push(newItem.name)
+      },
+      AddToRoot() {
+        this.AddNewItem({parent:'/',name:this.tempItem,children:[]})
+        this.tempItem = ''
+      },
+    }
   })
   
